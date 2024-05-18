@@ -23,11 +23,10 @@ const initFeedback = () => {
 function App() {
   const [feedback, setFeedback] = useState(initFeedback);
 
-// Після збереження відгуку в локальному сховищі - вивід на консоль 
+// збереження відгуку в локальному сховищ
   useEffect(() => {
     localStorage.setItem('current-feedback', JSON.stringify(feedback));
   }, [feedback]);
-    // console.log("feedback", feedback);
   
 //   ЗГІДНО УМОВИ updateFeedback 
   const updateFeedback = feedbackType => {
@@ -48,16 +47,12 @@ function App() {
   const goodFeedback = feedback.good;
   const neutralFeedback = feedback.neutral;
   const badFeedback = feedback.bad;
-    // console.log("goodFeedback", goodFeedback);
 
 // ЗГІДНО УМОВИ totalFeedback
-    const totalFeedback = goodFeedback + neutralFeedback + badFeedback;
-    // сonsole.log("totalFeedback", totalFeedback);
+  const totalFeedback = goodFeedback + neutralFeedback + badFeedback;
     
   const positiveFeedback = Math.round(
     ((goodFeedback) / totalFeedback) * 100);
-    // console.log(positiveFeedback)
-    //console.log(goodFeedback);
 
   const nullFeedback = totalFeedback === 0;
 
@@ -65,11 +60,9 @@ function App() {
     <>
       <Description />
 
-{/* ЗГІДНО УМОВИ  */}
       <Options onBtnClick={() => updateFeedback('good')}>Good</Options>
       <Options onBtnClick={() => updateFeedback('neutral')}>Neutral</Options>
       <Options onBtnClick={() => updateFeedback('bad')}>Bad</Options>
-
       {!nullFeedback && <Options onBtnClick={resetFeedback}>Reset</Options>}
 
       <Feedback

@@ -3,8 +3,9 @@
     height: 70px;
     color:black;
     background-color: rgb(186, 185, 185);
+    border-color: grey;
 }
 
 .list {
-    color:black;
+    list-style-type: none;
 }
