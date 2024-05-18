@@ -63,9 +63,9 @@ function App() {
     <>
       <Description />
 
-      <Options onBtnClick={() => updateFeedback('good')}>Good</Options>
-      <Options onBtnClick={() => updateFeedback('neutral')}>Neutral</Options>
-      <Options onBtnClick={() => updateFeedback('bad')}>Bad</Options>
+      <Options onClick={() => updateFeedback('good')}>Good</Options>
+      <Options onClick={() => updateFeedback('neutral')}>Neutral</Options>
+      <Options onClick={() => updateFeedback('bad')}>Bad</Options>
       {!nullFeedback && <Options onBtnClick={resetFeedback}>Reset</Options>}
 
       {totalFeedback > 0 ? 
