@@ -1,13 +1,12 @@
 import Description from '../Description/Description';
 import Feedback from '../Feedback/Feedback';
 import Options from '../Options/Options';
+import Notification from '../Notification/Notification';
 
 import './App.css';
 
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-// функція initFeedback отримує дані з локального сховища браузера за ключем current-feedback
 const initFeedback = () => {
     const getFeedback = localStorage.getItem('current-feedback');
     return getFeedback !== null
@@ -29,11 +28,17 @@ function App() {
   }, [feedback]);
   
 //   ЗГІДНО УМОВИ updateFeedback 
-  const updateFeedback = feedbackType => {
-    setFeedback({
-      ...feedback,
-      [feedbackType]: feedback[feedbackType] + 1,
-    });
+//   const updateFeedback = feedbackType => {
+//     setFeedback({
+//       ...feedback,
+//       [feedbackType]: feedback[feedbackType] + 1,
+//     });
+    //   };
+    const updateFeedback = feedbackType => {
+    setFeedback(prevFeedback => ({
+      ...prevFeedback,
+      [feedbackType]: prevFeedback[feedbackType] + 1,
+    }));
   };
 
   const resetFeedback = () => {
@@ -50,10 +55,8 @@ function App() {
 
 // ЗГІДНО УМОВИ totalFeedback
   const totalFeedback = goodFeedback + neutralFeedback + badFeedback;
-    
   const positiveFeedback = Math.round(
     ((goodFeedback) / totalFeedback) * 100);
-
   const nullFeedback = totalFeedback === 0;
 
   return (
@@ -65,6 +68,7 @@ function App() {
       <Options onBtnClick={() => updateFeedback('bad')}>Bad</Options>
       {!nullFeedback && <Options onBtnClick={resetFeedback}>Reset</Options>}
 
+      {totalFeedback > 0 ? 
       <Feedback
         noFeedback={nullFeedback}
         good={goodFeedback}
@@ -72,7 +76,8 @@ function App() {
         neutral={neutralFeedback}
         total={totalFeedback}
         positive={positiveFeedback}
-      />
+        />
+         : <Notification />}
     </>
   );
 }
