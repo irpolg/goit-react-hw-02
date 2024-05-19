@@ -1,7 +1,4 @@
-.feedbackList {
-border-color: blue;
-}
-
 .feedbackItem {
     color: black;
+    text-align: left;
 }

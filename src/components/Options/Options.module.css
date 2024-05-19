@@ -2,10 +2,14 @@
     width: 150px;
     height: 70px;
     color:black;
-    background-color: rgb(186, 185, 185);
-    border-color: grey;
+    background-color: rgb(228, 226, 226);
+    border-color: rgb(210, 207, 207);
+    font-size: 22px;
+
 }
 
-.list {
-    list-style-type: none;
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }

@@ -1,67 +1,27 @@
-import css from "./Options.module.css";
+import css from './Options.module.css';
 
-export default function Options({ like, reset }) {
-  const handleClick = (feedback) => {
-    like(feedback);
-  };
-
-  const isReset = () => {
-    reset();
-  };
-
+export default function Options({
+  options,
+  onClickFeedback,
+  onClickReset,
+  isResetButtonShow,
+}) {
   return (
-    <ul className={css.list}>
-      <li>
-        <button className={css.button} value={"good"} onClick={() => handleClick("good")}>Good</button>
-      </li>
-      <li>
-        <button className={css.button} value={"neutral"} onClick={() => handleClick("neutral")}>Neutral</button>
-      </li>
-      <li>
-        <button className={css.button} value={"bad"} onClick={() => handleClick("bad")}>Bad</button>
-      </li>
-      <li>
-        <button className={css.button} onClick={isReset}>Reset</button>
-      </li>
-    </ul>
+    <div className={css.options}>
+      {options.map(option => (
+        <button
+          className={css.button}
+          onClick={() => onClickFeedback(option)}
+          key={option}
+        >
+          {option}
+        </button>
+      ))}
+      {isResetButtonShow && (
+        <button className={css.button} onClick={onClickReset}>
+          Reset
+        </button>
+      )}
+    </div>
   );
 }
-
-
-
-
-// import css from "./Options.module.css";
-
-// export default function Options({ like, reset }) {
-//   function isGood() {
-//     const feedBack = "good";
-//     like(feedBack);
-//   }
-//   function isNeutral() {
-//     const feedBack = "neutral";
-//     like(feedBack);
-//   }
-//   function isBad() {
-//     const feedBack = "bad";
-//     like(feedBack);
-//   }
-//   function isReset() {
-//     reset();
-//   }
-//   return (
-//     <ul className={css.list}>
-//       <li>
-//         <button className={css.button} value={"good"} onClick={isGood}>Good</button>
-//       </li>
-//       <li>
-//         <button className={css.button} value={"neutral"} onClick={isNeutral}>Neutral</button>
-//       </li>
-//       <li>
-//         <button className={css.button} value={"bad"} onClick={isBad}>Bad</button>
-//       </li>
-//       <li>
-//         <button className={css.button} onClick={isReset}>Reset</button>
-//       </li>
-//     </ul>
-//   );
-// }
